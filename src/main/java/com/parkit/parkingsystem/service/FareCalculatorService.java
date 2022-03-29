@@ -28,9 +28,9 @@ public class FareCalculatorService {
         long duration = outHour - inHour;
 
         // conversion durée millisecondes => heures et changement de type primitif
-        float hourDuration = ((float)duration/1000/60/60);
+        double hourDuration = ((double)duration/1000/60/60);
         // formatage à 2 décimales après la virgule de la durée
-        DecimalFormat df = new DecimalFormat("0.00");
+        // DecimalFormat df = new DecimalFormat("0.00");
 
         switch (ticket.getParkingSpot().getParkingType()){
             case CAR: {
