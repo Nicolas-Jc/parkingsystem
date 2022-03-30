@@ -20,12 +20,12 @@ public class FareCalculatorServiceTest {
     private Ticket ticket;
 
     @BeforeAll
-    private static void setUp() {
+    public static void setUp() {
         fareCalculatorService = new FareCalculatorService();
     }
 
     @BeforeEach
-    private void setUpPerTest() {
+    public void setUpPerTest() {
         ticket = new Ticket();
     }
 
@@ -137,16 +137,15 @@ public class FareCalculatorServiceTest {
 
     @Test
     @DisplayName("Calcul prix ticket pour 30mn AUTO")
-    // Développement FONCTIONNALITE No2 en TDD
+    // Développement FONCTIONNALITE No1 en TDD
     public void calculateFareCarWithLessThan30mn(){
     //GIVEN
         Date inTime = new Date();
         inTime.setTime( System.currentTimeMillis() - ( 30 * 60 * 1000) );
-    //WHEN
         //<=30mn parking time should give Price = 0
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR,false);
-
+    //WHEN
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);

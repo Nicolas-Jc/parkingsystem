@@ -28,10 +28,18 @@ public class ParkingService {
     }
 
     public void processIncomingVehicle() {
+
         try{
             ParkingSpot parkingSpot = getNextParkingNumberIfAvailable();
             if(parkingSpot !=null && parkingSpot.getId() > 0){
                 String vehicleRegNumber = getVehichleRegNumber();
+                // FONCTIONNALITE_2 - Test ticket déjà existant avec ce numéro de véhicule
+                // Appel nouvelle méthode "getTicketExist"
+                // Affichage du message de fidélité sur la console
+                if (ticketDAO.getTicketExist(vehicleRegNumber) == 1){
+                    System.out.println("Welcome Back! As a recurring user of our parking lot, you'll benefit from a 5% discount");
+                }
+
                 parkingSpot.setAvailable(false);
                 parkingSpotDAO.updateParking(parkingSpot);//allot this parking space and mark it's availability as false
 

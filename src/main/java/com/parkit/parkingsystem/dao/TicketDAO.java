@@ -86,4 +86,32 @@ public class TicketDAO {
         }
         return false;
     }
+
+    // FONCTIONNALITE_2 : Recherche dans la base Ticket de la pre-existence
+    // d'un Ticket avec le numéro d'immatriculation entré
+    public int getTicketExist(String vehicleRegNumber) {
+        int verifyTicket = 0;
+        Connection con = null;
+        try {
+            con = dataBaseConfig.getConnection();
+            PreparedStatement ps = con.prepareStatement(DBConstants.GET_EXISTING_TICKET);
+            //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
+            ps.setString(1,vehicleRegNumber);
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+            // Un ticket avec cette immatriculation existe en base = client récurrent
+               verifyTicket = 1;
+            }
+            dataBaseConfig.closeResultSet(rs);
+            dataBaseConfig.closePreparedStatement(ps);
+        }catch (Exception ex){
+            logger.error("Error accessing ticket Database",ex);
+        }finally {
+            dataBaseConfig.closeConnection(con);
+            //int ReturnVal = 1;
+            return verifyTicket;
+        }
+    }
+
 }
