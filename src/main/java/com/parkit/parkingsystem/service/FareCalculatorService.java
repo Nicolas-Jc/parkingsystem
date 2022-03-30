@@ -3,8 +3,6 @@ package com.parkit.parkingsystem.service;
 import com.parkit.parkingsystem.constants.Fare;
 import com.parkit.parkingsystem.model.Ticket;
 
-import java.text.DecimalFormat;
-
 public class FareCalculatorService {
 
     public void calculateFare(Ticket ticket) {
@@ -29,8 +27,6 @@ public class FareCalculatorService {
 
         // conversion durée millisecondes => heures et transtypage en double
         double hourDuration = ((double) duration / 1000 / 60 / 60);
-        // formatage à 2 décimales après la virgule de la durée
-        // DecimalFormat df = new DecimalFormat("0.00");
 
         // IMPLEMENTATION FONCTIONNALITE NO 1 - 30 MN GRATUITES
         if (hourDuration <= Fare.DURATION_REDUCE_RATE) {
