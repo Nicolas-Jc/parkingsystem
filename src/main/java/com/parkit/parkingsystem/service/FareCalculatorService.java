@@ -10,10 +10,10 @@ public class FareCalculatorService {
             throw new IllegalArgumentException("Out time provided is incorrect:" + ticket.getOutTime().toString());
         }
 
-        // DEBUG La méthode getHours de la classe Date est dépréciée.
-        // A remplacer par "getTime()" - type long
-        // int inHour = ticket.getInTime().getHours();
-        // int outHour = ticket.getOutTime().getHours();
+       // DEBUG La méthode getHours de la classe Date est dépréciée.
+       // A remplacer par "getTime()" - type long
+       // int inHour = ticket.getInTime().getHours();
+       // int outHour = ticket.getOutTime().getHours();
 
         long inHour = ticket.getInTime().getTime();
         long outHour = ticket.getOutTime().getTime();
@@ -28,7 +28,7 @@ public class FareCalculatorService {
         // conversion durée millisecondes => heures et transtypage en double
         double hourDuration = ((double) duration / 1000 / 60 / 60);
 
-        // IMPLEMENTATION FONCTIONNALITE NO 1 - 30 MN GRATUITES
+        // IMPLEMENTATION FONCTIONNALITE_1 - 30 MN GRATUITES
         if (hourDuration <= Fare.DURATION_REDUCE_RATE) {
             ticket.setPrice(Fare.REDUCED_RATE);
         }
