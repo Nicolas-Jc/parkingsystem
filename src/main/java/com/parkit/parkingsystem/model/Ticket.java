@@ -9,6 +9,8 @@ public class Ticket {
     private double price;
     private Date inTime;
     private Date outTime;
+    //FONCTIONNALITE_2 indicateur pour savoir si remise à appliquer ou pas;
+    private boolean topRemise;
 
     public int getId() {
         return id;
@@ -57,4 +59,13 @@ public class Ticket {
     public void setOutTime(Date outTime) {
         this.outTime = outTime;
     }
+
+    //FONCTIONNALITE_2 AJOUT POUR GESTION TOP_REMISE
+    public boolean getTopRemise() {
+        return topRemise;
+    }
+    public void setTopRemise(boolean topRemise) {
+        this.topRemise = topRemise;
+    }
+    // FIN FONCTIONNALITE_2
 }

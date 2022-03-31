@@ -18,6 +18,9 @@ public class FareCalculatorService {
         long inHour = ticket.getInTime().getTime();
         long outHour = ticket.getOutTime().getTime();
 
+        // FONCTIONNALITE_2
+        double tauxFacturation = 1;
+
         // TODO: Some tests are failing here. Need to check if this logic is correct
         // DEBUG : la durée (ci-dessous "duration") pour
         // toutes les durées <1H de stationnement, la méthode rend un résultat erronné
@@ -28,19 +31,27 @@ public class FareCalculatorService {
         // conversion durée millisecondes => heures et transtypage en double
         double hourDuration = ((double) duration / 1000 / 60 / 60);
 
-        // IMPLEMENTATION FONCTIONNALITE_1 - 30 MN GRATUITES
+        // FONCTIONNALITE_1 - 30 MN GRATUITES
         if (hourDuration <= Fare.DURATION_REDUCE_RATE) {
-            ticket.setPrice(Fare.REDUCED_RATE);
+            ticket.setPrice(Fare.REDUCED_RATE_30MN);
         }
+        // Fin Fonctionnalite_1
         else {
+            // FONCTIONNALITE_2 - MISE A JOUR EVENTUEL DU TAUX DE REDUCTION
+            if (ticket.getTopRemise()) {
+                tauxFacturation = Fare.REDUCED_RATE_FIDELITY;
+            }
+
             switch (ticket.getParkingSpot().getParkingType()) {
                 case CAR: {
-                    ticket.setPrice(hourDuration * Fare.CAR_RATE_PER_HOUR);
+                    // FONCTIONNALITE_2 - Ajout Taux remise
+                    ticket.setPrice(hourDuration * Fare.CAR_RATE_PER_HOUR * tauxFacturation);
                     //ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
                     break;
                 }
                 case BIKE: {
-                    ticket.setPrice(hourDuration * Fare.BIKE_RATE_PER_HOUR);
+                    // FONCTIONNALITE_2 - Ajout Taux remise
+                    ticket.setPrice(hourDuration * Fare.BIKE_RATE_PER_HOUR * tauxFacturation);
                     //ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
                     break;
                 }

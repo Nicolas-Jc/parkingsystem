@@ -36,7 +36,7 @@ public class ParkingService {
                 // FONCTIONNALITE_2 - Test ticket déjà existant avec ce numéro de véhicule
                 // Appel nouvelle méthode "getTicketExist"
                 // Affichage du message de fidélité sur la console
-                if (ticketDAO.getTicketExist(vehicleRegNumber) == 1){
+                if (ticketDAO.getTicketCount(vehicleRegNumber) >= 1){
                     System.out.println("Welcome Back! As a recurring user of our parking lot, you'll benefit from a 5% discount");
                 }
 
@@ -111,6 +111,14 @@ public class ParkingService {
             Ticket ticket = ticketDAO.getTicket(vehicleRegNumber);
             Date outTime = new Date();
             ticket.setOutTime(outTime);
+            //
+            // FONCTIONNALITE_2 - Verification en sortie de parking
+            // tickets déjà existant avec ce numéro de véhicule
+            // Appel nouvelle méthode "getTicketExist"
+            if (ticketDAO.getTicketCount(vehicleRegNumber) > 1){
+                ticket.setTopRemise(true);
+            }
+            //
             fareCalculatorService.calculateFare(ticket);
             if(ticketDAO.updateTicket(ticket)) {
                 ParkingSpot parkingSpot = ticket.getParkingSpot();

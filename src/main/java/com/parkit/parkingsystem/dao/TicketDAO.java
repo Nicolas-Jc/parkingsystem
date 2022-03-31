@@ -89,19 +89,20 @@ public class TicketDAO {
 
     // FONCTIONNALITE_2 : Recherche dans la base Ticket de la pre-existence
     // d'un Ticket avec le numéro d'immatriculation entré
-    public int getTicketExist(String vehicleRegNumber) {
-        int verifyTicket = 0;
+    public int getTicketCount(String vehicleRegNumber) {
+        int nombreTickets=0;
         Connection con = null;
         try {
             con = dataBaseConfig.getConnection();
-            PreparedStatement ps = con.prepareStatement(DBConstants.GET_EXISTING_TICKET);
+            PreparedStatement ps = con.prepareStatement(DBConstants.GET_TICKET_COUNT);
             //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
             ps.setString(1,vehicleRegNumber);
             ResultSet rs = ps.executeQuery();
 
+
             if(rs.next()){
             // Un ticket avec cette immatriculation existe en base = client récurrent
-               verifyTicket = 1;
+               nombreTickets = rs.getInt(1);
             }
             dataBaseConfig.closeResultSet(rs);
             dataBaseConfig.closePreparedStatement(ps);
@@ -110,7 +111,7 @@ public class TicketDAO {
         }finally {
             dataBaseConfig.closeConnection(con);
             //int ReturnVal = 1;
-            return verifyTicket;
+            return nombreTickets;
         }
     }
 

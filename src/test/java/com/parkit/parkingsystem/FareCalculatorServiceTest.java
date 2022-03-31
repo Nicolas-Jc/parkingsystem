@@ -137,7 +137,7 @@ public class FareCalculatorServiceTest {
 
     @Test
     @DisplayName("Calcul prix ticket pour 30mn AUTO")
-    // Développement FONCTIONNALITE No1 en TDD
+    // Développement FONCTIONNALITE_1 en TDD
     public void calculateFareCarWithLessThan30mn(){
     //GIVEN
         Date inTime = new Date();

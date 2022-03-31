@@ -11,5 +11,5 @@ public class DBConstants {
 
     // FONCTIONNALITE_2
     // Requête personnalisée pour vérification utilisateurs récurrents
-    public static final String GET_EXISTING_TICKET = "select ID from prod.ticket where VEHICLE_REG_NUMBER=?";
+    public static final String GET_TICKET_COUNT = "select count(*) from ticket where VEHICLE_REG_NUMBER=?";
 }
