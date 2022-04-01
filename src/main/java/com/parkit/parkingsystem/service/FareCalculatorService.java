@@ -10,10 +10,10 @@ public class FareCalculatorService {
             throw new IllegalArgumentException("Out time provided is incorrect:" + ticket.getOutTime().toString());
         }
 
-       // DEBUG La méthode getHours de la classe Date est dépréciée.
+       /* DEBUG La méthode getHours de la classe Date est dépréciée.
        // A remplacer par "getTime()" - type long
        // int inHour = ticket.getInTime().getHours();
-       // int outHour = ticket.getOutTime().getHours();
+       // int outHour = ticket.getOutTime().getHours();*/
 
         long inHour = ticket.getInTime().getTime();
         long outHour = ticket.getOutTime().getTime();

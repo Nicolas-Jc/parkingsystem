@@ -64,6 +64,7 @@ public class Ticket {
     public boolean getTopRemise() {
         return topRemise;
     }
+
     public void setTopRemise(boolean topRemise) {
         this.topRemise = topRemise;
     }

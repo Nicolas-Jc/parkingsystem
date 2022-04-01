@@ -140,19 +140,60 @@ public class FareCalculatorServiceTest {
     @DisplayName("Calcul prix ticket pour 30mn AUTO")
     // Développement FONCTIONNALITE_1 en TDD
     public void calculateFareCarWithLessThan30mn() {
-        //GIVEN
+        //ARRANGE
         Date inTime = new Date();
         inTime.setTime(System.currentTimeMillis() - (30 * 60 * 1000));
         //<=30mn parking time should give Price = 0
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
-        //WHEN
+        //ACT
         ticket.setInTime(inTime);
         ticket.setOutTime(outTime);
         ticket.setParkingSpot(parkingSpot);
         fareCalculatorService.calculateFare(ticket);
-        //THEN
+        //ASSERT
         assertEquals(0, ticket.getPrice());
     }
 
+    @Test
+    @DisplayName("Calculer prix remisé client fidèle 1H AUTO")
+    // Développement FONCTIONNALITE_2 en TDD
+    public void calculateCarReducedFare() {
+        //ARRANGE
+        Date inTime = new Date();
+        inTime.setTime(System.currentTimeMillis() - (60 * 60 * 1000));
+        // 1H parking time should give Price 5% discount for recurring users
+        //
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
+        //ACT
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime);
+        ticket.setParkingSpot(parkingSpot);
+        ticket.setTopRemise(true);
+        fareCalculatorService.calculateFare(ticket);
+        //ASSERT
+        assertEquals(Fare.CAR_RATE_PER_HOUR * Fare.REDUCED_RATE_FIDELITY, ticket.getPrice());
+    }
+
+    @Test
+    @DisplayName("Calculer prix remisé client fidèle 1H MOTO")
+    // Développement FONCTIONNALITE_2 en TDD
+    public void calculateBikeReducedFare() {
+        //ARRANGE
+        Date inTime = new Date();
+        inTime.setTime(System.currentTimeMillis() - (60 * 60 * 1000));
+        // 1H parking time should give Price 5% discount for recurring users
+        //
+        Date outTime = new Date();
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.BIKE, false);
+        //ACT
+        ticket.setInTime(inTime);
+        ticket.setOutTime(outTime);
+        ticket.setParkingSpot(parkingSpot);
+        ticket.setTopRemise(true);
+        fareCalculatorService.calculateFare(ticket);
+        //ASSERT
+        assertEquals(Fare.BIKE_RATE_PER_HOUR * Fare.REDUCED_RATE_FIDELITY, ticket.getPrice());
+    }
 }
