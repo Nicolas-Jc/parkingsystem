@@ -99,7 +99,6 @@ public class TicketDAO {
             ps.setString(1, vehicleRegNumber);
             ResultSet rs = ps.executeQuery();
 
-
             if (rs.next()) {
                 // Un ticket avec cette immatriculation existe en base = client récurrent
                 nombreTickets = rs.getInt(1);
