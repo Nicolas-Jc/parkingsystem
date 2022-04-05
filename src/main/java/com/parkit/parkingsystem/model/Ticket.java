@@ -10,7 +10,7 @@ public class Ticket {
     private Date inTime;
     private Date outTime;
     //FONCTIONNALITE_2 indicateur pour savoir si remise à appliquer ou pas;
-    private boolean topRemise;
+    private boolean topDiscount;
 
     public int getId() {
         return id;
@@ -61,12 +61,12 @@ public class Ticket {
     }
 
     //FONCTIONNALITE_2 AJOUT POUR GESTION TOP_REMISE
-    public boolean getTopRemise() {
-        return topRemise;
+    public boolean getTopDiscount() {
+        return topDiscount;
     }
 
-    public void setTopRemise(boolean topRemise) {
-        this.topRemise = topRemise;
+    public void setTopDiscount(boolean topDiscount) {
+        this.topDiscount = topDiscount;
     }
     // FIN FONCTIONNALITE_2
 }

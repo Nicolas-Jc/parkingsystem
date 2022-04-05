@@ -19,7 +19,7 @@ public class FareCalculatorService {
         long outHour = ticket.getOutTime().getTime();
 
         // FONCTIONNALITE_2
-        double tauxFacturation = 1;
+        double billingRate = 1;
 
         // TODO: Some tests are failing here. Need to check if this logic is correct
         // DEBUG : la durée (ci-dessous "duration") pour
@@ -38,20 +38,20 @@ public class FareCalculatorService {
         // Fin Fonctionnalite_1
         else {
             // FONCTIONNALITE_2 - MISE A JOUR EVENTUEL DU TAUX DE REDUCTION
-            if (ticket.getTopRemise()) {
-                tauxFacturation = Fare.REDUCED_RATE_FIDELITY;
+            if (ticket.getTopDiscount()) {
+                billingRate = Fare.REDUCED_RATE_FIDELITY;
             }
 
             switch (ticket.getParkingSpot().getParkingType()) {
                 case CAR: {
                     // FONCTIONNALITE_2 - Ajout Taux remise
-                    ticket.setPrice(hourDuration * Fare.CAR_RATE_PER_HOUR * tauxFacturation);
+                    ticket.setPrice(hourDuration * Fare.CAR_RATE_PER_HOUR * billingRate);
                     //ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
                     break;
                 }
                 case BIKE: {
                     // FONCTIONNALITE_2 - Ajout Taux remise
-                    ticket.setPrice(hourDuration * Fare.BIKE_RATE_PER_HOUR * tauxFacturation);
+                    ticket.setPrice(hourDuration * Fare.BIKE_RATE_PER_HOUR * billingRate);
                     //ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
                     break;
                 }
