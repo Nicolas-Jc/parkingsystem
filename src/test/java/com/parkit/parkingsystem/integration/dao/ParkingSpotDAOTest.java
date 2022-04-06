@@ -4,6 +4,7 @@ import com.parkit.parkingsystem.constants.ParkingType;
 import com.parkit.parkingsystem.dao.ParkingSpotDAO;
 import com.parkit.parkingsystem.integration.config.DataBaseTestConfig;
 import com.parkit.parkingsystem.integration.service.DataBasePrepareService;
+import com.parkit.parkingsystem.model.ParkingSpot;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,28 +36,21 @@ public class ParkingSpotDAOTest {
     @Test
     public void verifyGetNextAvailableSlot() {
         // GIVEN
-        ParkingSpotDAO parkingSpotDAO = new ParkingSpotDAO();
-        parkingSpotDAO.dataBaseConfig = dataBaseTestConfig;
+        // Le premier slot de la base Parking est disponible
+        // car remis à "disponible" par "dataBasePrepareService.clearDataBaseEntries() avant chaque test"
         // WHEN
-        // Implique d'avoir la disponibilité du premier parking à "False"
-        // Disponibilité du deuxième parking à "True"
         int nextAvailableSlot = parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR);
         // THEN
-        assertThat(nextAvailableSlot).isEqualTo(2);
-
+        assertThat(nextAvailableSlot).isEqualTo(1);
     }
 
-    /*
     @Test
-    public void verifyGetTicketCount() {
+    public void verifyUpdateParking() {
         // GIVEN
-        TicketDAO ticketDAO = new TicketDAO();
-        ticketDAO.dataBaseConfig = dataBaseTestConfig;
+        ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
         // WHEN
-        // Implique d'avoir un enregistrement Ticket "ABCDEF" en base de test
-        int nbTicket = ticketDAO.getTicketCount("ABCDEF");
+        parkingSpotDAO.updateParking(parkingSpot);
         // THEN
-        assertThat(nbTicket).isEqualTo(1);
-    }*/
-
+        assertThat(parkingSpotDAO.getNextAvailableSlot(ParkingType.CAR)).isEqualTo(2);
+    }
 }

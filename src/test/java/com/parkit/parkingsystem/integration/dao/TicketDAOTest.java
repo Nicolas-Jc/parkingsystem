@@ -55,6 +55,7 @@ public class TicketDAOTest {
 
     @Test
     public void verifyGetTicketCount() {
+        //GIVEN
         Ticket ticket = new Ticket();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
         ticket.setParkingSpot(parkingSpot);
@@ -69,7 +70,6 @@ public class TicketDAOTest {
         // THEN
         assertThat(nbTicket).isEqualTo(1);
     }
-
 
     @Test
     public void verifyUpdateTicket() {
@@ -92,27 +92,4 @@ public class TicketDAOTest {
 
     }
 
-    /*
-    @Test
-    public void verifySaveTicket() {
-        // GIVEN
-        TicketDAO ticketDAO = new TicketDAO();
-        ticketDAO.dataBaseConfig = dataBaseTestConfig;
-        parkingSpotDAO.dataBaseConfig = dataBaseTestConfig;
-        //ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
-        //parkingSpotDAO.updateParking(parkingSpot);
-        Ticket ticket = new Ticket();
-        ticket.setParkingSpot(1);
-        ticket.setVehicleRegNumber("TESTSAVE");
-        ticket.setPrice(0);
-        ticket.setInTime(new Date(System.currentTimeMillis()));
-        ticket.setOutTime(null);
-        //ParkingService parkingService = new ParkingService(inputReaderUtil, parkingSpotDAO, ticketDAO);
-        // WHEN
-        ticketDAO.saveTicket(ticket);
-        // THEN
-        //assertThat(ticket).isNotNull();
-        // assertThat(ticke)
-        //assertThat(ticketDAO.getTicket("TESTIT").getOutTime()).isNotNull();
-    }*/
 }
