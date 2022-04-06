@@ -45,6 +45,7 @@ public class ParkingDataBaseIT {
     @BeforeEach
     private void setUpPerTest() throws Exception {
         // Suppression de la base Ticket avant chaque lancement de test
+        // et mise à jour slot 1 Parking à disponible
         dataBasePrepareService.clearDataBaseEntries();
     }
 
