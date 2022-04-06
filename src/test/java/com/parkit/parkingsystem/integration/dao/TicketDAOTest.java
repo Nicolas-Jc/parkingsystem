@@ -65,7 +65,6 @@ public class TicketDAOTest {
         ticket.setOutTime(null);
         ticketDAO.saveTicket(ticket);
         // WHEN
-        //Ticket returnTicket = ticketDAO.getTicket("TESTGET");
         int nbTicket = ticketDAO.getTicketCount("TESTGET");
         // THEN
         assertThat(nbTicket).isEqualTo(1);
@@ -87,7 +86,6 @@ public class TicketDAOTest {
         // WHEN
         ticketDAO.updateTicket(ticket);
         // THEN
-        //assertThat(nbTicket).isEqualTo(1);
         assertThat(ticketDAO.getTicket("TESTUPD").getPrice()).isEqualTo(333);
 
     }
