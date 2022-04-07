@@ -38,7 +38,7 @@ public class FareCalculatorService {
         // Fin Fonctionnalite_1
         else {
             // FONCTIONNALITE_2 - MISE A JOUR EVENTUEL DU TAUX DE REDUCTION
-            if (ticket.getTopDiscount()) {
+            if (ticket.isDiscount()) {
                 billingRate = Fare.REDUCED_RATE_FIDELITY;
             }
 

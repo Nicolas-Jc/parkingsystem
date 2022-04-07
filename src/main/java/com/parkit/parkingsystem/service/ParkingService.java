@@ -116,7 +116,7 @@ public class ParkingService {
             // tickets déjà existant avec ce numéro de véhicule
             // Appel nouvelle méthode "getTicketExist"
             if (ticketDAO.getTicketCount(vehicleRegNumber) > 1) {
-                ticket.setTopDiscount(true);
+                ticket.setDiscount(true);
             }
             //
             fareCalculatorService.calculateFare(ticket);

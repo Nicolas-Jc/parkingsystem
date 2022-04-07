@@ -61,11 +61,11 @@ public class Ticket {
     }
 
     //FONCTIONNALITE_2 AJOUT POUR GESTION TOP_REMISE
-    public boolean getTopDiscount() {
+    public boolean isDiscount() {
         return topDiscount;
     }
 
-    public void setTopDiscount(boolean topDiscount) {
+    public void setDiscount(boolean topDiscount) {
         this.topDiscount = topDiscount;
     }
     // FIN FONCTIONNALITE_2
