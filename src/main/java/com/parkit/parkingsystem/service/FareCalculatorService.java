@@ -11,7 +11,7 @@ public class FareCalculatorService {
         }
 
        /* DEBUG La méthode getHours de la classe Date est dépréciée.
-       // A remplacer par "getTime()" - type long
+       // Remplacée par "getTime()" - type long
        // int inHour = ticket.getInTime().getHours();
        // int outHour = ticket.getOutTime().getHours();*/
 
@@ -33,7 +33,7 @@ public class FareCalculatorService {
 
         // FONCTIONNALITE_1 - 30 MN GRATUITES
         if (hourDuration <= Fare.DURATION_REDUCE_RATE) {
-            ticket.setPrice(Fare.REDUCED_RATE_30MN);
+            ticket.setPrice(Fare.REDUCED_RATE_TIME);
         }
         // Fin Fonctionnalite_1
         else {

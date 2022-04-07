@@ -6,7 +6,7 @@ public class Fare {
 
     // Ajout pour gestion FONCTIONNALITE_1 : 30' gratuites
     // 1 - Prix tarif réduit
-    public static final double REDUCED_RATE_30MN = 0;
+    public static final double REDUCED_RATE_TIME = 0;
     // 2 - Durée (en heures) pour bénéficier tarif réduit (ici = 30')
     public static final double DURATION_REDUCE_RATE = 0.5;
 

@@ -10,6 +10,7 @@ public class DBConstants {
     public static final String GET_TICKET = "select t.PARKING_NUMBER, t.ID, t.PRICE, t.IN_TIME, t.OUT_TIME, p.TYPE from ticket t,parking p where p.parking_number = t.parking_number and t.VEHICLE_REG_NUMBER=? order by t.IN_TIME  limit 1";
 
     // FONCTIONNALITE_2
-    // Requête personnalisée pour vérification utilisateurs récurrents
+    // Requête personnalisée pour vérification si utilisateur récurrent (
+    // y-a-t-il déjà un ticket existant en base pour ce client ?
     public static final String GET_TICKET_COUNT = "select count(*) from ticket where VEHICLE_REG_NUMBER=?";
 }
