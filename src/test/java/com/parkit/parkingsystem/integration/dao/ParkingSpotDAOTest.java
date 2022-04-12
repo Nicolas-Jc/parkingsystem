@@ -43,7 +43,7 @@ public class ParkingSpotDAOTest {
         // THEN
         assertThat(nextAvailableSlot).isEqualTo(1);
     }
-
+    
     @Test
     public void verifyUpdateParking() {
         // GIVEN

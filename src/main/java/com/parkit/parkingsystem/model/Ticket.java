@@ -44,20 +44,46 @@ public class Ticket {
         this.price = price;
     }
 
+    // Correction Warning FindBugs
     public Date getInTime() {
-        return inTime;
+        if (inTime != null) {
+            return new Date(inTime.getTime());
+        } else {
+            return null;
+        }
     }
-
+    /* Correction Warning FindBugs
     public void setInTime(Date inTime) {
         this.inTime = inTime;
+    }*/
+
+    public void setInTime(Date inTime) {
+        if (inTime != null) {
+            this.inTime = new Date(inTime.getTime());
+        } else {
+            this.inTime = null;
+        }
     }
 
+    // Correction Warning FindBugs
     public Date getOutTime() {
-        return outTime;
+        if (outTime != null) {
+            return new Date(outTime.getTime());
+        } else {
+            return null;
+        }
     }
-
+    /* Correction Warning FindBugs
     public void setOutTime(Date outTime) {
         this.outTime = outTime;
+    }*/
+
+    public void setOutTime(Date outTime) {
+        if (outTime != null) {
+            this.outTime = new Date(outTime.getTime());
+        } else {
+            this.outTime = null;
+        }
     }
 
     //FONCTIONNALITE_2 AJOUT POUR GESTION TOP_REMISE
