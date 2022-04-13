@@ -22,9 +22,7 @@ public class FareCalculatorService {
         double billingRate = 1;
 
         // TODO: Some tests are failing here. Need to check if this logic is correct
-        // DEBUG : la durée (ci-dessous "duration") pour
-        // toutes les durées <1H de stationnement, la méthode rend un résultat erronné
-        // et uniquement ces 2 valeurs : 0 ou 1
+        // Changement type int => long suite utilisation nouvelle méthode getTime()
         //int duration = outHour - inHour;
         long duration = outHour - inHour;
 
