@@ -34,7 +34,7 @@ public class ParkingService {
             if (parkingSpot != null && parkingSpot.getId() > 0) {
                 String vehicleRegNumber = getVehichleRegNumber();
                 // FONCTIONNALITE_2 - Test ticket déjà existant avec ce numéro de véhicule
-                // Appel nouvelle méthode "getTicketExist"
+                // Appel nouvelle méthode "getTicketCount"
                 // Affichage du message de fidélité sur la console
                 if (ticketDAO.getTicketCount(vehicleRegNumber) >= 1) {
                     System.out.println("Welcome Back! As a recurring user of our parking lot, you'll benefit from a 5% discount");

@@ -39,23 +39,30 @@ public class ParkingSpotDAO {
         return result;
     }
 
-    public boolean updateParking(ParkingSpot parkingSpot) {
+    public boolean updateParking(final ParkingSpot parkingSpot) {
         //update the availability fo that parking slot
         Connection con = null;
+        PreparedStatement ps = null;
+        boolean result = false;
         try {
             con = dataBaseConfig.getConnection();
-            PreparedStatement ps = con.prepareStatement(DBConstants.UPDATE_PARKING_SPOT);
+            ps = con.prepareStatement(DBConstants.UPDATE_PARKING_SPOT);
             ps.setBoolean(1, parkingSpot.isAvailable());
             ps.setInt(2, parkingSpot.getId());
-            int updateRowCount = ps.executeUpdate();
-            dataBaseConfig.closePreparedStatement(ps);
-            return (updateRowCount == 1);
+
+            result = (ps.executeUpdate() == 1);
+        } catch (RuntimeException e1) {
+            throw e1;
         } catch (Exception ex) {
-            logger.error("Error updating parking info", ex);
+            logger.error("Error updating parking", ex);
             return false;
         } finally {
+            if (ps != null) {
+                dataBaseConfig.closePreparedStatement(ps);
+            }
             dataBaseConfig.closeConnection(con);
         }
+        return result;
     }
 
 }

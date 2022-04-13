@@ -19,20 +19,17 @@ public class DataBaseConfig {
         // Correction FindBugs "Hardcoded constant database password
         // Load a properties file config.properties from project classpath, and retrieved the property value.
         InputStream input = DataBaseConfig.class.getClassLoader().getResourceAsStream("config.properties");
-
         Properties prop = new Properties();
 
         if (input == null) {
             System.out.println("Sorry, unable to find config.properties");
         }
-
         //load a properties file from class path, inside static method
         try {
             prop.load(input);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         //get the property value
         String username = prop.getProperty("username");
         String password = prop.getProperty("password");
@@ -41,13 +38,6 @@ public class DataBaseConfig {
                 "jdbc:mysql://localhost:3306/prod?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", username, password);
 
     }
-    /*
-    public Connection getConnection() throws ClassNotFoundException, SQLException {
-        logger.info("Create DB connection");
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        return DriverManager.getConnection(
-                "jdbc:mysql://localhost:3306/prod?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "rootroot");
-    }*/
 
     public void closeConnection(Connection con) {
         if (con != null) {

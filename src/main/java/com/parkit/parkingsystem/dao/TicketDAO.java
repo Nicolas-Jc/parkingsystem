@@ -88,8 +88,9 @@ public class TicketDAO {
         } catch (Exception ex) {
             logger.error("Error saving ticket info", ex);
         } finally {
-            dataBaseConfig.closeConnection(con);
             dataBaseConfig.closePreparedStatement(ps);
+            dataBaseConfig.closeConnection(con);
+
         }
         return false;
     }
