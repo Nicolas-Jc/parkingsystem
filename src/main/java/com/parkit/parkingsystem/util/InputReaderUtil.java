@@ -7,8 +7,6 @@ import java.util.Scanner;
 
 public class InputReaderUtil {
 
-    //private static final Scanner scan = new Scanner(System.in);
-    // Correction Bub FindBugs
     private static final Scanner scan = new Scanner(System.in, "UTF-8");
     private static final Logger logger = LogManager.getLogger("InputReaderUtil");
 

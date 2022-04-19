@@ -25,8 +25,7 @@ public class TicketDAO {
         try {
             con = dataBaseConfig.getConnection();
             ps = con.prepareStatement(DBConstants.SAVE_TICKET);
-            //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
-            //ps.setInt(1,ticket.getId());
+
             ps.setInt(1, ticket.getParkingSpot().getId());
             ps.setString(2, ticket.getVehicleRegNumber());
             ps.setDouble(3, ticket.getPrice());
@@ -36,7 +35,6 @@ public class TicketDAO {
         } catch (RuntimeException ex) {
             logger.error("Error fetching next available slot", ex);
         } finally {
-            // Correction Bug FIndBugs
             dataBaseConfig.closePreparedStatement(ps);
             dataBaseConfig.closeConnection(con);
             return false;
@@ -70,6 +68,7 @@ public class TicketDAO {
             dataBaseConfig.closeConnection(con);
             return ticket;
         }
+
     }
 
     public boolean updateTicket(Ticket ticket) {
@@ -103,12 +102,11 @@ public class TicketDAO {
         try {
             con = dataBaseConfig.getConnection();
             PreparedStatement ps = con.prepareStatement(DBConstants.GET_TICKET_COUNT);
-            //ID, PARKING_NUMBER, VEHICLE_REG_NUMBER, PRICE, IN_TIME, OUT_TIME)
+
             ps.setString(1, vehicleRegNumber);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                // Un ticket avec cette immatriculation existe en base = client récurrent
                 nombreTickets = rs.getInt(1);
             }
             dataBaseConfig.closeResultSet(rs);
@@ -117,7 +115,6 @@ public class TicketDAO {
             logger.error("Error accessing ticket Database", ex);
         } finally {
             dataBaseConfig.closeConnection(con);
-            //int ReturnVal = 1;
             return nombreTickets;
         }
     }

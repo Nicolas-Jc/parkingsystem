@@ -52,11 +52,7 @@ public class Ticket {
             return null;
         }
     }
-    /* Correction Warning FindBugs
-    public void setInTime(Date inTime) {
-        this.inTime = inTime;
-    }*/
-
+    
     public void setInTime(Date inTime) {
         if (inTime != null) {
             this.inTime = new Date(inTime.getTime());
@@ -73,10 +69,6 @@ public class Ticket {
             return null;
         }
     }
-    /* Correction Warning FindBugs
-    public void setOutTime(Date outTime) {
-        this.outTime = outTime;
-    }*/
 
     public void setOutTime(Date outTime) {
         if (outTime != null) {

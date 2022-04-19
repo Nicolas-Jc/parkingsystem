@@ -143,7 +143,7 @@ public class FareCalculatorServiceTest {
         //ARRANGE
         Date inTime = new Date();
         inTime.setTime(System.currentTimeMillis() - (30 * 60 * 1000));
-        //<=30mn parking time should give Price = 0
+        //30mn parking time should give Price = 0
         Date outTime = new Date();
         ParkingSpot parkingSpot = new ParkingSpot(1, ParkingType.CAR, false);
         //ACT

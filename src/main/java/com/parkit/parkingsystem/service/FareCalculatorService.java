@@ -10,31 +10,22 @@ public class FareCalculatorService {
             throw new IllegalArgumentException("Out time provided is incorrect:" + ticket.getOutTime().toString());
         }
 
-       /* DEBUG La méthode getHours de la classe Date est dépréciée.
-       // Remplacée par "getTime()" - type long
-       // int inHour = ticket.getInTime().getHours();
-       // int outHour = ticket.getOutTime().getHours();*/
-
+        // DEBUG La méthode getHours de la classe Date est dépréciée.
+        // Remplacée par "getTime()" - type long
         long inHour = ticket.getInTime().getTime();
         long outHour = ticket.getOutTime().getTime();
 
-        // FONCTIONNALITE_2
+        // FONCTIONNALITE_2 - Reduction 5%
         double billingRate = 1;
 
         // TODO: Some tests are failing here. Need to check if this logic is correct
-        // Changement type int => long suite utilisation nouvelle méthode getTime()
-        //int duration = outHour - inHour;
         long duration = outHour - inHour;
-
-        // conversion durée millisecondes => heures et transtypage en double
         double hourDuration = ((double) duration / 1000 / 60 / 60);
 
         // FONCTIONNALITE_1 - 30 MN GRATUITES
         if (hourDuration <= Fare.DURATION_REDUCE_RATE) {
             ticket.setPrice(Fare.REDUCED_RATE_TIME);
-        }
-        // Fin Fonctionnalite_1
-        else {
+        } else {
             // FONCTIONNALITE_2 - MISE A JOUR EVENTUEL DU TAUX DE REDUCTION
             if (ticket.isDiscount()) {
                 billingRate = Fare.REDUCED_RATE_FIDELITY;
@@ -42,15 +33,11 @@ public class FareCalculatorService {
 
             switch (ticket.getParkingSpot().getParkingType()) {
                 case CAR: {
-                    // FONCTIONNALITE_2 - Ajout Taux remise
                     ticket.setPrice(hourDuration * Fare.CAR_RATE_PER_HOUR * billingRate);
-                    //ticket.setPrice(duration * Fare.CAR_RATE_PER_HOUR);
                     break;
                 }
                 case BIKE: {
-                    // FONCTIONNALITE_2 - Ajout Taux remise
                     ticket.setPrice(hourDuration * Fare.BIKE_RATE_PER_HOUR * billingRate);
-                    //ticket.setPrice(duration * Fare.BIKE_RATE_PER_HOUR);
                     break;
                 }
                 default:
